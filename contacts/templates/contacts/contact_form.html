@@ -1,0 +1,55 @@
+{% load static crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Agenda Virtual con Django</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+</head>
+<body class="container py-5">
+    
+    <div class="p-5 border border-1 shadow">
+        <h1 class="gw-bold text-primary">Bienvenido a MiAgenda</h1>
+        <h2>¡Con esta aplicación podrás gestionar tu agenda virtual!</h2>
+
+        <p>
+            Consulta, crea, actualiza y elimina tus contactos de forma fácil y segura
+        </p>
+    </div>
+
+    <div class="mt-5">
+        <h3>
+            {% if contact %}
+            Editar
+            {% else %}
+            Nuevo
+            {% endif %}
+            contacto
+        </h3>
+    </div>
+
+    <form action="" method="post" class="mt-5  mx-auto" style="max-width:420px" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+
+        {{ form|crispy }}
+
+        <div class="text-end mt-3 ">
+            <a href="{% url 'contact_list' %}" class="btn btn-light mc-1">
+                Cancelar
+            </a>
+            <button class="btn btn-primary">
+                {% if contact %}
+                Actualizar
+                {% else %}
+                Crear
+                {% endif %}
+                contacto
+            </button>
+        </div>
+    </form>
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
