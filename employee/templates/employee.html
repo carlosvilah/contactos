@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+</head>
+<body>
+    <h1>Active Employees</h1>
+    <ul>
+        {% for employee in employees %}
+            <li>
+                <img src="data:image/jpeg;base64, {{ employee.avatar_256 }}" alt="{{ employee.name }}" />
+                <a href="{% url 'employee_detail' employee.id %}"><strong>{{ employee.name }}</strong><br></a>
+                Phone: {{ employee.work_phone }}<br>
+                Email: {{ employee.work_email }}<br>
+            </li>
+        {% empty %}
+            <li>No active employees found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

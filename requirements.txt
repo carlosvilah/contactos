@@ -1,0 +1,5 @@
+Django
+django-imagekit
+django-crispy-forms
+crispy-bootstrap5
+python-decouple
